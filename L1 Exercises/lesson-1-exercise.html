@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div> <hr>
+    <div class="js-container-2"></div> <hr>
+    <div class="js-container-3"></div> <hr>
+    <div class="js-container-4"></div> <hr>
+    <div class="js-container-5"></div> <hr>
+    <div class="js-container-6"></div> <hr>
+    <div class="js-container-7"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script type="text/babel">
+      // Solution 1
+      const container = document.querySelector('.js-container');
+
+      const solution1 = <button>Good job!</button>;
+
+      ReactDOM.createRoot(container).render(solution1);
+
+      // Solution 2
+      const container2 = document.querySelector('.js-container-2');
+
+      const solution2 = <p>My name is Arpan</p>;
+
+      ReactDOM.createRoot(container2).render(solution2);
+
+      // Solution 3
+      const container3 = document.querySelector('.js-container-3');
+
+      const nameParagraph = <p>Cotton Socks</p>;
+      const priceParagraph = <p>Price: $10</p>;
+      const addToCartButton = <button>Add to Cart</button>;
+      const solution3 = (
+        <div>
+          {nameParagraph}
+          {priceParagraph}
+          {addToCartButton}
+        </div>
+      );
+
+      ReactDOM.createRoot(container3).render(solution3);
+
+      // Solution 4
+      const container4 = document.querySelector('.js-container-4');
+
+      const socksPrice = 10;
+      const tShirtPrice = 8;
+      const productCost = socksPrice + 2 * tShirtPrice;
+
+      const solution4 = (
+        <div>
+          <p>Product cost: ${productCost}</p>
+        </div>
+      );
+
+      ReactDOM.createRoot(container4).render(solution4);
+
+      // Solution 5
+      const container5 = document.querySelector('.js-container-5');
+
+      const shippingCost = 5;
+      const solution5 = (
+        <div>
+          <p>Product cost: ${productCost}</p>
+          <p>Shipping cost: ${shippingCost}</p>
+          <p>Total cost: ${productCost + shippingCost}</p>
+          <button>Place your order</button>
+        </div>
+      );
+
+      ReactDOM.createRoot(container5).render(solution5);
+
+      // Solution 6
+      const container6 = document.querySelector('.js-container-6');
+
+      const currentDate = dayjs().format('MMMM D');
+      const solution6 = <p>Today is {currentDate}</p>;
+
+      ReactDOM.createRoot(container6).render(solution6);
+
+      // Solution 7
+      const container7 = document.querySelector('.js-container-7');
+      const root = ReactDOM.createRoot(container7);
+      
+      const currentTime = dayjs().format('HH:mm:ss');
+      const solution7 = <p>Current time: {currentTime}</p>;
+      root.render(solution7);
+      
+      setInterval(() => {
+        const currentTime = dayjs().format('HH:mm:ss');
+        const solution7 = <p>Current time: {currentTime}</p>;
+        root.render(solution7);
+      }, 1000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div> <hr>
+    <div class="js-container-2"></div>
+    <!-- <div class="js-container-3"></div> <hr>
+    <div class="js-container-4"></div> <hr>
+    <div class="js-container-5"></div> <hr>
+    <div class="js-container-6"></div> <hr>
+    <div class="js-container-7"></div> -->
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+      // Solution 1
+      const container = document.querySelector('.js-container');
+      const root = ReactDOM.createRoot(container);
+
+      function Button({ message }) {
+        return (
+          <>
+            <button>{message}</button>
+          </>
+        );
+      }
+      function Input({ type }) {
+        const inputName = type[0].toUpperCase() + type.slice(1);
+        return (
+          <div>
+            <input placeholder={inputName} type={type} />
+          </div>
+        );
+      }
+      function LoginForm() {
+        return (
+          <>
+            <Input type="email" />
+            <Input type="password" />
+            <Button message="Login" />
+            <Button message="Sign up" />
+          </>
+        );
+      }
+
+      function App() {
+        return (
+          <>
+            <p>Hello, welcome to my website</p>
+            <LoginForm />
+          </>
+        );
+      }
+
+      root.render(<App />);
+
+      // Solution 2
+      const container2 = document.querySelector('.js-container-2');
+      const root2 = ReactDOM.createRoot(container2);
+
+      function ProductDetails({ name, price, discountPrice, imageSrc }) {
+        return (
+          <div>
+            <img height="150" src={imageSrc} alt={name} />
+            <p>{name}</p>
+            {discountPrice ? (<del>${price.toFixed(2)}</del>) : (<p>${price.toFixed(2)}</p>)}
+            {discountPrice && (<p>Discount price: ${discountPrice.toFixed(2)}</p>)}
+            <button>Add to Cart</button>
+          </div>
+        );
+      }
+
+      function App2() {
+        return (
+          <>
+            <ProductDetails
+              name="Cotton socks"
+              price={10.90}
+              discountPrice={5.45}
+              imageSrc="https://supersimple.dev/images/cotton-socks.png"
+            />
+            <ProductDetails
+              name="Tennis balls"
+              price={6}
+              imageSrc="https://supersimple.dev/images/tennis-balls.png"
+            />
+            <ProductDetails
+              name="Plain T-Shirt"
+              price={7.99}
+              imageSrc="https://supersimple.dev/images/plain-t-shirt.png"
+            />
+          </>
+        );
+      }
+
+      root2.render(<App2 />);
+    </script>
+  </body>
+</html>
