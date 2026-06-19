@@ -9,4 +9,4 @@ I am completly new to React so I need to learn it. To do this, I am going to fol
 - Lesson 1 Exercises 1a - 1j
 - Lesson 2
 - Lesson 2 Exercises 2a - 2j
-- 1:23:29
+- 1:36:50
