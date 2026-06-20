@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div> <hr>
+    <div class="js-container-2"></div>
+    <!-- <div class="js-container-3"></div> <hr>
+    <div class="js-container-4"></div> <hr>
+    <div class="js-container-5"></div> <hr>
+    <div class="js-container-6"></div> <hr>
+    <div class="js-container-7"></div> -->
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+      // Solution 1
+      const container = document.querySelector('.js-container');
+      const root = ReactDOM.createRoot(container);
+
+      function Button({ count, setCount }) {
+        function updateCounter() {
+          setCount(count + 1);
+        }
+
+        const message = count == 1 ? `Clicked ${count} time` : `Clicked ${count} times`;
+        return (
+          <>
+            <button onClick={updateCounter}>{message}</button>
+          </>
+        );
+      }
+      function ResetButton({ setCount }) {
+        function resetCounter() {
+          setCount(0);
+        }
+
+        return (
+          <>
+            <button onClick={resetCounter}>Reset</button>
+          </>
+        );
+      }
+
+      function App() {
+        const [count, setCount] = React.useState(0);
+
+        return (
+          <>
+            <Button
+              count={count}
+              setCount={setCount}
+            />
+            <Button
+              count={count}
+              setCount={setCount}
+            />
+            <ResetButton
+              setCount={setCount}
+            />
+          </>
+        );
+      }
+
+      root.render(<App />);
+
+      // Solution 2
+      const container2 = document.querySelector('.js-container-2');
+      const root2 = ReactDOM.createRoot(container2);
+
+      function Input({ inputText, setInputText }) {
+        function changeInputText(event) {
+          setInputText(event.target.value);
+        }
+
+        return (
+          <>
+            <input
+              type="text"
+              placeholder="Type a name here"
+              onChange={changeInputText}
+              value={inputText}
+            />
+          </>
+        );
+      }
+      function ResetInput({ setInputText }) {
+        function resetInput() {
+          setInputText('');
+        }
+
+        return (
+          <>
+            <button onClick={resetInput}>Reset</button>
+          </>
+        );
+      }
+      function ExampleInput({ setInputText }) {
+        function changeInputText() {
+          setInputText('Jacob');
+        }
+
+        return (
+          <>
+            <button onClick={changeInputText}>Example</button>
+          </>
+        );
+      }
+
+      function App2() {
+        const [inputText, setInputText] = React.useState('');
+
+        return (
+          <>
+            <Input
+              inputText={inputText}
+              setInputText={setInputText}
+            />
+            <ResetInput
+              setInputText={setInputText}
+            />
+            <ExampleInput
+              setInputText={setInputText}
+            />
+            <p>Hello {inputText}</p>
+          </>
+        );
+      }
+
+      root2.render(<App2 />);
+    </script>
+  </body>
+</html>

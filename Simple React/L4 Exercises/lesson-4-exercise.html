@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+
+    <style>
+      button {
+        padding: 8px 16px;
+        font-size: 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: rgb(0, 123, 255);
+        color: white;
+        margin: 5px;
+      }
+      .button-on {
+        background-color: rgb(25, 135, 84);
+      }
+      .button-off {
+        background-color: rgb(220, 53, 69);
+      }
+      input {
+        padding: 8px 12px;
+        font-size: 15px;
+        border: 1px solid rgb(0, 123, 255);
+        border-radius: 4px;
+        margin: 5px;
+        width: 225px;
+
+        &.password {
+          width: 150px;
+        }
+      }
+      .show-password-button {
+        width: 65px;
+        background-color: rgb(108, 117, 125);
+        text-align: center;
+        padding: 8px 10px;
+      }
+
+      .counter {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(222, 222, 222);
+
+        & button {
+          background-color: rgb(25, 135, 84);
+          border-radius: 0;
+          padding: 12px 20px;
+          font-size: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div> <hr>
+    <div class="js-container-2"></div> <hr>
+    <div class="js-container-3"></div> <hr>
+    <div class="js-container-4"></div>
+    <!-- <div class="js-container-5"></div> <hr>
+    <div class="js-container-6"></div> <hr>
+    <div class="js-container-7"></div> -->
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+      // Solution 1
+      const container = document.querySelector('.js-container');
+      const root = ReactDOM.createRoot(container);
+
+      function Button() {
+        const [isButtonOn, setIsButtonOn] = React.useState(true);
+
+        function handleClick() {
+          setIsButtonOn(!isButtonOn);
+        }
+
+        return (
+          <>
+            <button
+              onClick={handleClick}
+              className={isButtonOn ? 'button-on' : 'button-off'}
+            >
+              {isButtonOn ? 'ON' : 'OFF'}
+            </button>
+          </>
+        );
+      }
+
+      function App() {
+        return (
+          <>
+            <Button />
+          </>
+        );
+      }
+
+      root.render(<App />);
+
+      // Solution 2
+      const container2 = document.querySelector('.js-container-2');
+      const root2 = ReactDOM.createRoot(container2);
+
+      function Button2({ message }) {
+        return (
+          <>
+            <button>{message}</button>
+          </>
+        );
+      }
+      function Input({ type }) {
+        const inputName = type[0].toUpperCase() + type.slice(1);
+        const [showPassword, setShowPassword] = React.useState(false);
+
+        function togglePassword() {
+          setShowPassword(!showPassword);
+        }
+
+        return (
+          <div>
+            <input
+              placeholder={inputName}
+              type={type == 'password' && showPassword ? 'text' : type} 
+              className={type}
+            />
+            {type == 'password' && (
+              <button
+                onClick={togglePassword}
+                className='show-password-button'
+              >{showPassword ? 'Hide' : 'Show'}</button>
+            )}
+          </div>
+        );
+      }
+      function LoginForm() {
+        return (
+          <>
+            <Input type="email" />
+            <Input type="password" />
+            <Button2 message="Login" />
+            <Button2 message="Sign up" />
+          </>
+        );
+      }
+
+      function App2() {
+        return (
+          <>
+            <p>Hello, welcome to my website</p>
+            <LoginForm />
+          </>
+        );
+      }
+
+      root2.render(<App2 />);
+
+      // Solution 3
+      const container3 = document.querySelector('.js-container-3');
+      const root3 = ReactDOM.createRoot(container3);
+
+      function Time() {
+        const [time, setTime] = React.useState(dayjs().format('HH:mm:ss'));
+        React.useEffect(() => {
+          setInterval(() => {
+            setTime(dayjs().format('HH:mm:ss'));
+          }, 1000);
+        }, []);
+
+        return (
+          <>
+            <p>Current time: {time}</p>
+          </>
+        );
+      }
+
+      function App3() {
+        return (
+          <>
+            <Time />
+          </>
+        );
+      }
+
+      root3.render(<App3 />);
+
+      // Solution 4
+      const container4 = document.querySelector('.js-container-4');
+      const root4 = ReactDOM.createRoot(container4);
+
+      function Button3({ count, setCount, autoClickRef }) {
+        function updateCounter() {
+          setCount(count + 1);
+        }
+
+        const message = count == 1 ? `Clicked ${count} time` : `Clicked ${count} times`;
+        return (
+          <>
+            <button
+              onClick={updateCounter}
+              ref={autoClickRef}
+            >
+              {message}
+            </button>
+          </>
+        );
+      }
+      function ResetButton({ setCount }) {
+        function resetCounter() {
+          setCount(0);
+        }
+
+        return (
+          <>
+            <button onClick={resetCounter}>Reset</button>
+          </>
+        );
+      }
+      function AutoClickButton({ count, setCount, autoClickRef }) {
+        const [isAutoClickOn, setIsAutoClickOn] = React.useState(false);
+
+        function toggleAutoClick() {
+          setIsAutoClickOn(!isAutoClickOn);
+        }
+        React.useEffect(() => {
+          if (!isAutoClickOn) {return;}
+          let autoClickInterval = setInterval(() => {
+            autoClickRef.current.click();
+          }, 1000);
+           return () => clearInterval(autoClickInterval);;
+        }, [isAutoClickOn]);
+
+        return (
+          <>
+            <button
+              onClick={toggleAutoClick}
+            >
+              {isAutoClickOn ? 'Stop Auto Click' : 'Auto Click'}
+            </button>
+          </>
+        );
+      }
+
+      function App4() {
+        const [count, setCount] = React.useState(0);
+        const autoClickRef = React.useRef(null);
+
+        return (
+          <div
+            className="counter"
+          >
+            <Button3
+              count={count}
+              setCount={setCount}
+              autoClickRef={autoClickRef}
+            />
+            <ResetButton
+              setCount={setCount}
+            />
+            <AutoClickButton
+              count={count}
+              setCount={setCount}
+              autoClickRef={autoClickRef}
+            />
+          </div>
+        );
+      }
+
+      root4.render(<App4 />);
+    </script>
+  </body>
+</html>
