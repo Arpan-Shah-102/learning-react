@@ -1,0 +1,18 @@
+input {
+  padding: 8px 12px;
+  font-size: 15px;
+  border: 1px solid rgb(0, 123, 255);
+  border-radius: 4px;
+  margin: 5px;
+  width: 225px;
+
+  &.password {
+    width: 150px;
+  }
+}
+.show-password-button {
+  width: 65px;
+  background-color: rgb(108, 117, 125);
+  text-align: center;
+  padding: 8px 10px;
+}

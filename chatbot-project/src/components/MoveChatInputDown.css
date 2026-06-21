@@ -1,0 +1,11 @@
+.move-text-input {
+  text-align: center;
+  color: rgb(25, 135, 85);
+  text-decoration: underline;
+  cursor: pointer;
+  margin-bottom: 10px;
+  position: fixed;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}

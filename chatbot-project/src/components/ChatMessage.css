@@ -1,0 +1,31 @@
+.robot {
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: flex-start;
+}
+.user {
+  justify-content: flex-end;
+  align-items: flex-start;
+  align-self: flex-end;
+}
+.flex-container.robot, .flex-container.user {
+  align-items: flex-start;
+  margin: 5px 0;
+}
+.robot p, .user p {
+  max-width: 300px;
+  padding: 12px 15px;
+  border-radius: 10px;
+  background-color: rgb(238, 238, 238);
+  font-size: 15px;
+}
+img {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+}
+.time {
+  color: rgb(128, 128, 128);
+  font-size: 12px;
+}
