@@ -5,6 +5,16 @@ I am completly new to React so I need to learn it. To do this, I am going to fol
 
 ## Progress
 
+### Day 5 - 6/22/2026
+- Rest of Lesson 7
+- Lesson 7 Exercises 7a - 7o
+- 8:01:00
+
+### Day 4 - 6/21/2026
+- Part of Lesson 7
+- 7:03:57
+- (Wedding)
+
 ### Day 3 - 6/20/2026
 - Lesson 5
 - Lesson 5 Exercises 5a - 5k

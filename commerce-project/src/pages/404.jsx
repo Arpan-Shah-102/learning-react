@@ -2,12 +2,12 @@ import { Header } from '../components/Header';
 import { Link } from 'react-router';
 import './404.css';
 
-export function Page404() {
+export function Page404({ cart }) {
   return (
     <>
       <title>Page Not Found</title>
 
-      <Header />
+      <Header cart={cart} />
 
       <div className="page-404">
         <div className="error-code">404</div>
